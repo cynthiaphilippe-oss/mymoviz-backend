@@ -9,11 +9,19 @@ router.get('/', function(req, res, next) {
 
 
 /* GET movies from TMDB */
-router.get('/movies', async (req, res) => {
+/*router.get('/movies', async (req, res) => {
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bf8556d627ea4333ffa3711f34c6f2e6`);
   const data = await response.json();
 
   res.json({ movies: data.results });
+});*/
+router.get('/movies', (req, res) => {
+fetch(`https://api.themoviedb.org/3/discover/movie?api_key=bf8556d627ea4333ffa3711f34c6f2e6`)
+    .then(response => response.json())
+    .then(data => {
+        res.json({ movies: data.results });
+    });
 });
+
 
 module.exports = router;
